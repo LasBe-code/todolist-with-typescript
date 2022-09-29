@@ -22,11 +22,12 @@ interface TodoListStatePropType {
   item: TodoListStateType;
 }
 
-function TodoItem({ item }: TodoListStatePropType): JSX.Element {
+const TodoItem = ({ item }: TodoListStatePropType) => {
   const [todoList, setTodoList] = useRecoilState(todoListState);
   const index = todoList.findIndex(
     (listItem: TodoListStateType): boolean => listItem === item
   );
+  console.log("TodoItem: ", item);
 
   const editItemText = (event: ChangeEvent<HTMLInputElement>) => {
     const newList = replaceItemAtIndex(todoList, index, {
@@ -63,5 +64,5 @@ function TodoItem({ item }: TodoListStatePropType): JSX.Element {
       <button onClick={deleteItem}>X</button>
     </div>
   );
-}
+};
 export default TodoItem;

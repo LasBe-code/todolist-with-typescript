@@ -10,20 +10,18 @@ import { todoListState } from "../recoil/atoms";
 import { filteredTodoListState } from "../recoil/selector";
 
 function TodoList(): React.ReactElement {
-  const todoList: TodoListStateArrayType = useRecoilValue(todoListState);
+  const todoList: TodoListStateArrayType = useRecoilValue(
+    filteredTodoListState
+  );
 
   return (
-    <div>
-      {/* <TodoListStats />
-      <TodoListFilters /> */}
+    <div style={{ margin: "auto" }}>
+      <TodoListStats />
+      <TodoListFilters />
       <TodoItemCreator />
       {todoList.map((todoItem) => (
         <div>
           <TodoItem key={todoItem.id} item={todoItem} />
-          <TestTodoItem
-            key={todoItem.id}
-            item={todoItem as TodoListStateType}
-          />
         </div>
       ))}
     </div>
